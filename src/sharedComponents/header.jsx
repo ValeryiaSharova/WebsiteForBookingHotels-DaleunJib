@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState({ status: false, style: 'nav__menu' });
+  const [iconTheme, setIconTheme] = useState('ri-moon-line');
   const clickToShowMenu = () => {
     if (showMenu.status) {
       setShowMenu({ status: false, style: 'nav__menu' });
@@ -10,6 +11,19 @@ const Header = () => {
       setShowMenu({ status: true, style: 'nav__menu show-menu' });
     }
   };
+
+  const changeTheme = () => {
+    const darkTheme = 'dark-theme';
+
+    const getCurrentTheme = () => (document.body.classList.contains(darkTheme) ? 'dark' : 'light');
+    const getCurrentIcon = () => (iconTheme === 'ri-sun-line' ? 'ri-moon-line' : 'ri-sun-line');
+
+    document.body.classList.toggle(darkTheme);
+    setIconTheme(getCurrentIcon());
+    localStorage.setItem('selected-theme', getCurrentTheme());
+    localStorage.setItem('selected-icon', getCurrentIcon());
+  };
+
   return (
     <header className="header" id="header">
       <nav className="nav container">
@@ -58,8 +72,8 @@ const Header = () => {
         </div>
 
         <div className="nav__btns">
-          <i className="ri-moon-line change-theme" id="theme-button" />
-          <div className="nav__toggle" id="nav-toggle">
+          <i className={`${iconTheme} change-theme`} id="theme-button" onClick={changeTheme} />
+          <div className="nav__toggle" id="nav-toggle" onClick={clickToShowMenu}>
             <i className="ri-menu-line" />
           </div>
         </div>
