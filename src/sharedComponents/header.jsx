@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 const Header = () => {
+  const [showMenu, setShowMenu] = useState({ status: false, style: 'nav__menu' });
+  const clickToShowMenu = () => {
+    if (showMenu.status) {
+      setShowMenu({ status: false, style: 'nav__menu' });
+    } else {
+      setShowMenu({ status: true, style: 'nav__menu show-menu' });
+    }
+  };
   return (
     <header className="header" id="header">
       <nav className="nav container">
@@ -9,7 +17,7 @@ const Header = () => {
           <i className="ri-leaf-line nav__logo-icon" /> Plantex
         </Link>
 
-        <div className="nav__menu" id="nav-menu">
+        <div className={showMenu.style} id="nav-menu">
           <ul className="nav__list">
             <li className="nav__item">
               <NavLink
@@ -17,6 +25,7 @@ const Header = () => {
                 to="/"
                 className="nav__link"
                 activeClassName="active-link"
+                onClick={clickToShowMenu}
               >
                 Home
               </NavLink>
@@ -26,6 +35,7 @@ const Header = () => {
                 to="/products"
                 className="nav__link"
                 activeClassName="active-link"
+                onClick={clickToShowMenu}
               >
                 Products
               </NavLink>
@@ -35,13 +45,14 @@ const Header = () => {
                 to="/login"
                 className="nav__link"
                 activeClassName="active-link"
+                onClick={clickToShowMenu}
               >
                 LogIn
               </NavLink>
             </li>
           </ul>
 
-          <div className="nav__close" id="nav-close">
+          <div className="nav__close" id="nav-close" onClick={clickToShowMenu}>
             <i className="ri-close-line" />
           </div>
         </div>
