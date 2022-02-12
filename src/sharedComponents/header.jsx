@@ -1,29 +1,43 @@
 import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
 
 const Header = () => {
   return (
     <header className="header" id="header">
       <nav className="nav container">
-        <a href="#" className="nav__logo">
+        <Link to="/" className="nav__logo">
           <i className="ri-leaf-line nav__logo-icon" /> Plantex
-        </a>
+        </Link>
 
         <div className="nav__menu" id="nav-menu">
           <ul className="nav__list">
             <li className="nav__item">
-              <a href="/" className="nav__link active-link">
+              <NavLink
+                exact
+                to="/"
+                className="nav__link"
+                activeClassName="active-link"
+              >
                 Home
-              </a>
+              </NavLink>
             </li>
             <li className="nav__item">
-              <a href="/products" className="nav__link">
+              <NavLink
+                to="/products"
+                className="nav__link"
+                activeClassName="active-link"
+              >
                 Products
-              </a>
+              </NavLink>
             </li>
             <li className="nav__item">
-              <a href="/signin" className="nav__link">
-                SignIn
-              </a>
+              <NavLink
+                to="/login"
+                className="nav__link"
+                activeClassName="active-link"
+              >
+                LogIn
+              </NavLink>
             </li>
           </ul>
 
