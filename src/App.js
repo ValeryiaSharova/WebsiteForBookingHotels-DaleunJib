@@ -5,6 +5,7 @@ import Products from './pages/products/products';
 import LogIn from './pages/logIn/login';
 import Footer from './sharedComponents/footer';
 import Header from './sharedComponents/header';
+import ScrollUp from './sharedComponents/scrollUp';
 
 const App = () => (
   <>
@@ -15,6 +16,7 @@ const App = () => (
       <Route path="/login" exact component={LogIn} />
     </Switch>
     <Footer />
+    <ScrollUp />
   </>
 );
 export default App;
