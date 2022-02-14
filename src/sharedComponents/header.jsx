@@ -25,7 +25,7 @@ const Header = () => {
   };
 
   return (
-    <header className="header" id="header">
+    <header className="header scroll-header" id="header">
       <nav className="nav container">
         <Link to="/" className="nav__logo">
           <i className="ri-leaf-line nav__logo-icon" /> Plantex
