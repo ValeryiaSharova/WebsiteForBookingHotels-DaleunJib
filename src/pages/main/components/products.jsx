@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import product1 from '../../../assets/img/product1.png';
 import product2 from '../../../assets/img/product2.png';
 import product3 from '../../../assets/img/product3.png';
@@ -96,6 +97,11 @@ const Products = () => {
             <i className="ri-shopping-bag-line" />
           </button>
         </article>
+      </div>
+      <div className="container-center">
+        <Link to="/products" className="button button--flex">
+          See more <i className="ri-arrow-right-line button__icon" />
+        </Link>
       </div>
     </section>
   );

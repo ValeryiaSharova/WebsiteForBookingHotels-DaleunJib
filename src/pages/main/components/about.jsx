@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import about from '../../../assets/img/about.png';
 
 const About = () => {
@@ -36,9 +37,9 @@ const About = () => {
             </p>
           </div>
 
-          <a href="#" className="button--link button--flex">
+          <Link to="/products" className="button--link button--flex">
             Shop Now <i className="ri-arrow-right-down-line button__icon" />
-          </a>
+          </Link>
         </div>
       </div>
     </section>
