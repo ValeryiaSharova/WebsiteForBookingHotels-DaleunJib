@@ -46,7 +46,7 @@ const Questions = () => {
           {faq
             .filter((item, index) => index % 2 === 0)
             .map((item, index) => (
-              <Question item={item} index={index} />
+              <Question item={item} index={index} key={`${item + index}`} />
             ))}
         </div>
 
@@ -54,7 +54,7 @@ const Questions = () => {
           {faq
             .filter((item, index) => index % 2 !== 0)
             .map((item, index) => (
-              <Question item={item} index={index} />
+              <Question item={item} index={index} key={`${item + index}`} />
             ))}
         </div>
       </div>

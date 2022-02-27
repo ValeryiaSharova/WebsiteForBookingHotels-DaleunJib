@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-const Question = ({ item, index }) => {
+const Question = ({ item }) => {
   const [active, setActive] = useState(false);
   const divRef = useRef();
 
@@ -14,7 +14,7 @@ const Question = ({ item, index }) => {
   };
 
   return (
-    <div className={`questions__item${active ? ' accordion-open' : ''}`} key={`${item + index}`}>
+    <div className={`questions__item${active ? ' accordion-open' : ''}`}>
       <header className="questions__header" onClick={toggleAccordion}>
         <i className="ri-add-line questions__icon" />
         <h3 className="questions__item-title">{item.question}</h3>
@@ -29,7 +29,6 @@ const Question = ({ item, index }) => {
 
 Question.propTypes = {
   item: PropTypes.object.isRequired,
-  index: PropTypes.number.isRequired,
 };
 
 export default Question;
