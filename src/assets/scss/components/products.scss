@@ -16,6 +16,10 @@
       transform: translateY(-0.5rem);
     }
   }
+  &-image-container {
+    height: 270px;
+    text-align: center;
+  }
   &__img {
     position: relative;
     width: 120px;
@@ -23,14 +27,25 @@
     margin-bottom: var(--mb-0-75);
     transition: 0.3s;
   }
+  &__category {
+    background-color: var(--first-color);
+    color: #fff;
+    border-radius: 40px;
+    width: fit-content;
+    padding: 2px 5px;
+    margin: 5px;
+    font-size: 12px;
+  }
   &__title,
   &__price {
     font-size: var(--small-font-size);
     font-weight: var(--font-semi-bold);
     color: var(--title-color);
+    text-align: center;
   }
   &__title {
     margin-bottom: 0.25rem;
+    height: 70px;
   }
   &__button {
     position: absolute;
