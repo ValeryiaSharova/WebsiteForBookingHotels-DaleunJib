@@ -1,13 +1,31 @@
-import React from 'react';
+/* eslint-disable no-underscore-dangle */
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import product1 from '../../../assets/img/product1.png';
-import product2 from '../../../assets/img/product2.png';
-import product3 from '../../../assets/img/product3.png';
-import product4 from '../../../assets/img/product4.png';
-import product5 from '../../../assets/img/product5.png';
-import product6 from '../../../assets/img/product6.png';
+import {
+  getProducts,
+  getProductsError,
+  getProductsLoadingStatus,
+  loadProducts,
+} from '../../../store/products';
 
 const Products = () => {
+  const products = useSelector(getProducts());
+  const isLoading = useSelector(getProductsLoadingStatus());
+  const error = useSelector(getProductsError());
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadProducts());
+  }, []);
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (error) {
+    return <h3>{error}</h3>;
+  }
   return (
     <section className="product section container" id="products">
       <h2 className="section__title-center">
@@ -20,83 +38,23 @@ const Products = () => {
       </p>
 
       <div className="product__container grid">
-        <article className="product__card">
-          <div className="product__circle" />
+        {products
+          .filter((el, index) => index <= 5)
+          .map(product => (
+            <article className="product__card" key={product._id}>
+              <div className="product__circle" />
+              <div className="product-image-container">
+                <img src={product.image} alt={product.name} className="product__img" />
+              </div>
 
-          <img src={product1} alt="product1" className="product__img" />
+              <h3 className="product__title">{product.name}</h3>
+              <span className="product__price">${product.price}</span>
 
-          <h3 className="product__title">Cacti Plant</h3>
-          <span className="product__price">$19.99</span>
-
-          <button className="button--flex product__button" type="button">
-            <i className="ri-shopping-bag-line" />
-          </button>
-        </article>
-
-        <article className="product__card">
-          <div className="product__circle" />
-
-          <img src={product2} alt="product2" className="product__img" />
-
-          <h3 className="product__title">Cactus Plant</h3>
-          <span className="product__price">$11.99</span>
-
-          <button className="button--flex product__button" type="button">
-            <i className="ri-shopping-bag-line" />
-          </button>
-        </article>
-
-        <article className="product__card">
-          <div className="product__circle" />
-
-          <img src={product3} alt="product3" className="product__img" />
-
-          <h3 className="product__title">Aloe Vera Plant</h3>
-          <span className="product__price">$7.99</span>
-
-          <button className="button--flex product__button" type="button">
-            <i className="ri-shopping-bag-line" />
-          </button>
-        </article>
-
-        <article className="product__card">
-          <div className="product__circle" />
-
-          <img src={product4} alt="product4" className="product__img" />
-
-          <h3 className="product__title">Succulent Plant</h3>
-          <span className="product__price">$5.99</span>
-
-          <button className="button--flex product__button" type="button">
-            <i className="ri-shopping-bag-line" />
-          </button>
-        </article>
-
-        <article className="product__card">
-          <div className="product__circle" />
-
-          <img src={product5} alt="product5" className="product__img" />
-
-          <h3 className="product__title">Succulent Plant</h3>
-          <span className="product__price">$10.99</span>
-
-          <button className="button--flex product__button" type="button">
-            <i className="ri-shopping-bag-line" />
-          </button>
-        </article>
-
-        <article className="product__card">
-          <div className="product__circle" />
-
-          <img src={product6} alt="product6" className="product__img" />
-
-          <h3 className="product__title">Green Plant</h3>
-          <span className="product__price">$8.99</span>
-
-          <button className="button--flex product__button" type="button">
-            <i className="ri-shopping-bag-line" />
-          </button>
-        </article>
+              <button className="button--flex product__button" type="button">
+                <i className="ri-shopping-bag-line" />
+              </button>
+            </article>
+          ))}
       </div>
       <div className="container-center">
         <Link to="/products" className="button button--flex">
