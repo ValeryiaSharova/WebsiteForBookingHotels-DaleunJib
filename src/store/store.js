@@ -2,10 +2,12 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import productsReducer from './products';
 import categoryReducer from './category';
 import { logger } from './middleware/logger';
+import questionsReducer from './questions';
 
 const rootReducer = combineReducers({
   category: categoryReducer,
   products: productsReducer,
+  questions: questionsReducer,
 });
 
 function createStore() {
