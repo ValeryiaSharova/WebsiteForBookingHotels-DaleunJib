@@ -1,23 +1,18 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import ProductCard from '../../../sharedComponents/productCard';
 import {
-  getProducts,
+  getFirstProducts,
   getProductsError,
   getProductsLoadingStatus,
-  loadProducts,
 } from '../../../store/products';
 
 const Products = () => {
-  const products = useSelector(getProducts());
+  const products = useSelector(getFirstProducts());
   const isLoading = useSelector(getProductsLoadingStatus());
   const error = useSelector(getProductsError());
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(loadProducts());
-  }, []);
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -38,23 +33,9 @@ const Products = () => {
       </p>
 
       <div className="product__container grid">
-        {products
-          .filter((el, index) => index <= 5)
-          .map(product => (
-            <article className="product__card" key={product._id}>
-              <div className="product__circle" />
-              <div className="product-image-container">
-                <img src={product.image} alt={product.name} className="product__img" />
-              </div>
-
-              <h3 className="product__title">{product.name}</h3>
-              <span className="product__price">${product.price}</span>
-
-              <button className="button--flex product__button" type="button">
-                <i className="ri-shopping-bag-line" />
-              </button>
-            </article>
-          ))}
+        {products.map(product => (
+          <ProductCard product={product} key={product._id} />
+        ))}
       </div>
       <div className="container-center">
         <Link to="/products" className="button button--flex">

@@ -1,40 +1,33 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
-import Question from './question';
+import { useSelector } from 'react-redux';
+import {
+  getQuestions,
+  getQuestionsError,
+  getQuestionsLoadingStatus,
+} from '../../../store/questions';
+import Accordeon from '../../../sharedComponents/accordeon';
 
 const Questions = () => {
-  const faq = [
-    {
-      question: 'My flowers are falling off or dying?',
-      answer:
-        ' Plants are easy way to add color energy and transform your space but which planet is for you. Choosing the right plant.',
-    },
-    {
-      question: 'What causes leaves to become pale?',
-      answer:
-        'Plants are easy way to add color energy and transform your space but which planet is for you. Choosing the right plant.',
-    },
-    {
-      question: 'What causes brown crispy leaves?',
-      answer:
-        'Plants are easy way to add color energy and transform your space but which planet is for you. Choosing the right plant.',
-    },
-    {
-      question: 'How do i choose a plant?',
-      answer:
-        'Plants are easy way to add color energy and transform your space but which planet is for you. Choosing the right plant.',
-    },
-    {
-      question: 'How do I change the pots?',
-      answer:
-        'Plants are easy way to add color energy and transform your space but which planet is for you. Choosing the right plant.',
-    },
-    {
-      question: 'Why are gnats flying around my plant?',
-      answer:
-        'Plants are easy way to add color energy and transform your space but which planet is for you. Choosing the right plant.',
-    },
-  ];
+  const faq = useSelector(getQuestions());
+  const isLoading = useSelector(getQuestionsLoadingStatus());
+  const error = useSelector(getQuestionsError());
 
+  if (isLoading) {
+    return (
+      <section className="questions section">
+        <h2>Loading...</h2>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="questions section">
+        <h2>{error}</h2>
+      </section>
+    );
+  }
   return (
     <section className="questions section" id="faqs">
       <h2 className="section__title-center questions__title container">
@@ -45,16 +38,16 @@ const Questions = () => {
         <div className="questions__group">
           {faq
             .filter((item, index) => index % 2 === 0)
-            .map((item, index) => (
-              <Question item={item} index={index} key={`${item + index}`} />
+            .map(item => (
+              <Accordeon title={item.question} content={item.answer} key={item._id} />
             ))}
         </div>
 
         <div className="questions__group">
           {faq
             .filter((item, index) => index % 2 !== 0)
-            .map((item, index) => (
-              <Question item={item} index={index} key={`${item + index}`} />
+            .map(item => (
+              <Accordeon title={item.question} content={item.answer} key={item._id} />
             ))}
         </div>
       </div>
