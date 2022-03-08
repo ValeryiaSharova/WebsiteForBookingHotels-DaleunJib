@@ -36,6 +36,19 @@
     margin: 5px;
     font-size: 12px;
   }
+  &__find-category {
+    background-color: #fff;
+    color: var(--first-color);
+    border-radius: 40px;
+    width: fit-content;
+    padding: 2px 5px;
+    margin: 5px;
+    font-size: 12px;
+  }
+  &__find-category:hover {
+    background-color: var(--first-color);
+    color: #fff;
+  }
   &__title,
   &__price {
     font-size: var(--small-font-size);
