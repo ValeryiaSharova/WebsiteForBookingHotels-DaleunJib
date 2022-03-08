@@ -2,7 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import productService from '../services/product.service';
 
-const initialState = { entities: [], isLoading: true, error: null };
+const initialState = { entities: null, isLoading: true, error: null };
 
 const productSlice = createSlice({
   name: 'products',
@@ -39,5 +39,11 @@ export const loadProducts = () => async dispatch => {
 export const getProducts = () => state => state.products.entities;
 export const getProductsLoadingStatus = () => state => state.products.isLoading;
 export const getProductsError = () => state => state.products.error;
+export const getFirstProducts = () => state => {
+  if (state.products.entities) {
+    return state.products.entities.filter((el, index) => index <= 5);
+  }
+  return [];
+};
 
 export default productsReducer;

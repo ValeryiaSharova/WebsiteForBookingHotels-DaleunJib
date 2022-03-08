@@ -2,7 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import categoryService from '../services/category.service';
 
-const initialState = { entities: [], isLoading: true, error: null };
+const initialState = { entities: null, isLoading: true, error: null };
 
 const categorySlice = createSlice({
   name: 'category',
