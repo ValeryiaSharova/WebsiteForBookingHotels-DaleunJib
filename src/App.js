@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Main from './pages/main/main';
-import Products from './pages/products/products';
+import ProductsLayout from './pages/products/productsLayout';
 import LogIn from './pages/logIn/login';
 import Footer from './sharedComponents/footer';
 import Header from './sharedComponents/header';
@@ -24,7 +24,7 @@ const App = () => {
       <Header />
       <Switch>
         <Route path="/" exact component={Main} />
-        <Route path="/products" exact component={Products} />
+        <Route path="/products/:productId?" exact component={ProductsLayout} />
         <Route path="/login" exact component={LogIn} />
       </Switch>
       <Footer />

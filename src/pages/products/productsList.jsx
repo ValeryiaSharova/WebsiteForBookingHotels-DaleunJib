@@ -6,7 +6,7 @@ import ProductCard from '../../sharedComponents/productCard';
 import { getCategory, getCategoryError, getCategoryLoadingStatus } from '../../store/category';
 import { getProducts, getProductsError, getProductsLoadingStatus } from '../../store/products';
 
-const Products = () => {
+const ProductsList = () => {
   const productsState = useSelector(getProducts());
   const productsError = useSelector(getProductsError());
   const productsLoading = useSelector(getProductsLoadingStatus());
@@ -62,7 +62,7 @@ const Products = () => {
   }
 
   return (
-    <section className="product section container" id="products">
+    <section className="product section container">
       <h2 className="section__title-center">Our products</h2>
       <div className="footer__subscribe">
         <input
@@ -90,4 +90,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default ProductsList;

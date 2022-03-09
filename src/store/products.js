@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 import productService from '../services/product.service';
@@ -45,5 +46,7 @@ export const getFirstProducts = () => state => {
   }
   return [];
 };
+export const getProductById = productId => state =>
+  state.products.entities.find(p => p._id === productId);
 
 export default productsReducer;
