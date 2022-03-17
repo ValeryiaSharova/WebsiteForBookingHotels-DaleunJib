@@ -1,33 +1,25 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import Main from './pages/main/main';
 import ProductsLayout from './pages/products/productsLayout';
 import LogIn from './pages/logIn/login';
 import Footer from './sharedComponents/footer';
 import Header from './sharedComponents/header';
 import ScrollUp from './sharedComponents/scrollUp';
-import { loadProducts } from './store/products';
-import { loadCategory } from './store/category';
-import { loadQuestions } from './store/questions';
+import AppLoader from './sharedComponents/hoc/appLoader';
 
 const App = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(loadProducts());
-    dispatch(loadCategory());
-    dispatch(loadQuestions());
-  }, []);
   return (
     <>
-      <Header />
-      <Switch>
-        <Route path="/" exact component={Main} />
-        <Route path="/products/:productId?" exact component={ProductsLayout} />
-        <Route path="/login" exact component={LogIn} />
-      </Switch>
-      <Footer />
+      <AppLoader>
+        <Header />
+        <Switch>
+          <Route path="/" exact component={Main} />
+          <Route path="/products/:productId?" exact component={ProductsLayout} />
+          <Route path="/login/:type?" exact component={LogIn} />
+        </Switch>
+        <Footer />
+      </AppLoader>
       <ScrollUp />
     </>
   );
