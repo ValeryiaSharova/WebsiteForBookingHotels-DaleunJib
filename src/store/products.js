@@ -3,7 +3,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import productService from '../services/product.service';
 
-const initialState = { entities: null, isLoading: true, error: null };
+const initialState = { entities: null, isLoading: true, error: null, dataLoaded: false };
 
 const productSlice = createSlice({
   name: 'products',
@@ -12,6 +12,7 @@ const productSlice = createSlice({
     recived(state, action) {
       state.entities = action.payload;
       state.isLoading = false;
+      state.dataLoaded = true;
     },
     productsRequested(state) {
       state.isLoading = true;
@@ -48,5 +49,6 @@ export const getFirstProducts = () => state => {
 };
 export const getProductById = productId => state =>
   state.products.entities.find(p => p._id === productId);
+export const getDataStatus = () => state => state.products.dataLoaded;
 
 export default productsReducer;
