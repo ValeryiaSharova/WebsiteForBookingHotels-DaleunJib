@@ -1,0 +1,58 @@
+[
+  {
+    "_id": "237b8314-1f2b-4ab0-af83-ada156cb65dd",
+    "name": "Cactus"
+  },
+  {
+    "_id": "4c5cabc2-f365-4e4f-9181-2c0f6e7d2a1c",
+    "name": "Haworthia"
+  },
+  {
+    "_id": "7c819c2c-70df-4769-9652-0b4a360077da",
+    "name": "Aeonium"
+  },
+  {
+    "_id": "8c18e6c9-9ed8-4369-a806-467602fa4127",
+    "name": "Liliaceae"
+  },
+  {
+    "_id": "8fb27066-5a10-4346-b396-92f590c97797",
+    "name": "Echeveria"
+  },
+  {
+    "_id": "949b0f82-e54f-4ec0-8a88-0cd96a155944",
+    "name": "Sedum"
+  },
+  {
+    "_id": "96fdb5f6-2317-44c9-bc23-0cda45f95c9d",
+    "name": "Opuntia"
+  },
+  {
+    "_id": "9f4e79ee-b0d5-4171-9006-404258005486",
+    "name": "Aloe"
+  },
+  {
+    "_id": "b6d9fc30-591d-4271-b54f-c103bc68b864",
+    "name": "Crassula"
+  },
+  {
+    "_id": "c7e09b30-1a0c-4b54-9434-264c65d7b77a",
+    "name": "Pachyphytum"
+  },
+  {
+    "_id": "cbb6e8f8-8d42-4de5-b1fd-58f5b0d1ecb8",
+    "name": "Asphodelaceae"
+  },
+  {
+    "_id": "d97dec49-0b6a-4ea7-b476-b35196439c01",
+    "name": "Echinocactus"
+  },
+  {
+    "_id": "e59699d4-68c6-4d2d-9002-d410db0f69f6",
+    "name": "Echinocereus"
+  },
+  {
+    "_id": "e84a962b-0173-4c9e-ba31-794611e063f1",
+    "name": "Pilosocereus"
+  }
+]
