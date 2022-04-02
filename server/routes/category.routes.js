@@ -7,9 +7,9 @@ router.get("/", async (req, res) => {
     const list = await Category.find();
     res.status(200).send(list);
   } catch (error) {
-    res.status(500).json({
-      message: "На сервере произошла ошибка. Попробуйте позже.",
-    });
+    res
+      .status(500)
+      .json({ message: "An error has occurred on the server. Try later" });
   }
 });
 
