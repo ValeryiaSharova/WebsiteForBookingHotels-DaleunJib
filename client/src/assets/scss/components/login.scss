@@ -45,6 +45,9 @@
     margin-top: 3.25rem;
     text-align: center;
   }
+  &__checked-error {
+    margin-bottom: 10px;
+  }
   &__error-message {
     color: red;
     font-size: 12px;
