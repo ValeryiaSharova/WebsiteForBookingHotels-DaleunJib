@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Router } from 'react-router-dom';
 import App from './App';
 import './assets/scss/styles.scss';
 import createStore from './store/store';
+import history from './utilits/history';
 
 const store = createStore();
 
@@ -12,7 +13,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <Router history={history}>
+          <App />
+        </Router>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
+import { getIsLoggedIn, logOut } from '../store/user';
 
 const Header = () => {
+  const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState({ status: false, style: 'nav__menu' });
   const [iconTheme, setIconTheme] = useState('ri-moon-line');
   const clickToShowMenu = () => {
@@ -23,6 +26,8 @@ const Header = () => {
     localStorage.setItem('selected-theme', getCurrentTheme());
     localStorage.setItem('selected-icon', getCurrentIcon());
   };
+
+  const isLoggedIn = useSelector(getIsLoggedIn());
 
   return (
     <header className="header scroll-header" id="header">
@@ -54,16 +59,36 @@ const Header = () => {
                 Products
               </NavLink>
             </li>
-            <li className="nav__item">
-              <NavLink
-                to="/login"
-                className="nav__link"
-                activeClassName="active-link"
-                onClick={clickToShowMenu}
-              >
-                LogIn
-              </NavLink>
-            </li>
+            {isLoggedIn ? (
+              <>
+                <li className="nav__item">
+                  <NavLink
+                    to="/cart"
+                    className="nav__link"
+                    activeClassName="active-link"
+                    onClick={clickToShowMenu}
+                  >
+                    Cart
+                  </NavLink>
+                </li>
+                <li className="nav__item">
+                  <span className="nav__link" onClick={() => dispatch(logOut())}>
+                    Logout
+                  </span>
+                </li>
+              </>
+            ) : (
+              <li className="nav__item">
+                <NavLink
+                  to="/login"
+                  className="nav__link"
+                  activeClassName="active-link"
+                  onClick={clickToShowMenu}
+                >
+                  LogIn
+                </NavLink>
+              </li>
+            )}
           </ul>
 
           <div className="nav__close" id="nav-close" onClick={clickToShowMenu}>
