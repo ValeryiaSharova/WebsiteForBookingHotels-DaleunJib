@@ -10,7 +10,7 @@ module.exports = async () => {
   }
 
   const questions = await Question.find();
-  if (questions.length !== questionsMock) {
+  if (questions.length !== questionsMock.length) {
     await createInitialEntity(Question, questionsMock);
   }
 };
