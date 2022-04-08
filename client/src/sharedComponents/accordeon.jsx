@@ -55,11 +55,12 @@ Accordeon.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   categoryProduct: PropTypes.arrayOf(PropTypes.object),
-  onCategorySelected: PropTypes.func.isRequired,
+  onCategorySelected: PropTypes.func,
 };
 
 Accordeon.defaultProps = {
   categoryProduct: null,
+  onCategorySelected: null,
 };
 
 export default Accordeon;

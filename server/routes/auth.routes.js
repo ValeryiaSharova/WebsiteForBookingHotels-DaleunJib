@@ -14,17 +14,13 @@ router.post("/signUp", [
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res
-          .status(400)
-          .json({ error: { message: "INVALID_DATA", code: 400 } });
+        return res.status(400).json({ message: "INVALID_DATA", code: 400 });
       }
 
       const { email, password } = req.body;
       const existingUser = await User.findOne({ email });
       if (existingUser) {
-        return res
-          .status(400)
-          .json({ error: { message: "EMAIL_EXISTS", code: 400 } });
+        return res.status(400).json({ message: "EMAIL_EXISTS", code: 400 });
       }
 
       const hashedPassword = await bcrypt.hash(password, 12);
@@ -51,17 +47,13 @@ router.post("/signInWithPassword", [
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res
-          .status(400)
-          .json({ error: { message: "INVALID_DATA", code: 400 } });
+        return res.status(400).json({ message: "INVALID_DATA", code: 400 });
       }
 
       const { email, password } = req.body;
       const existingUser = await User.findOne({ email });
       if (!existingUser) {
-        return res
-          .status(400)
-          .send({ error: { message: "EMAIL_NOT_FOUND", code: 400 } });
+        return res.status(400).send({ message: "EMAIL_NOT_FOUND", code: 400 });
       }
 
       const isPasswordEqual = await bcrypt.compare(
@@ -69,9 +61,7 @@ router.post("/signInWithPassword", [
         existingUser.password
       );
       if (!isPasswordEqual) {
-        return res
-          .status(400)
-          .send({ error: { message: "INVALID_PASSWORD", code: 400 } });
+        return res.status(400).send({ message: "INVALID_PASSWORD", code: 400 });
       }
 
       const tokens = tokenService.generate({ _id: existingUser._id });
