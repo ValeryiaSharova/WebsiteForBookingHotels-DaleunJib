@@ -7,17 +7,22 @@ import Footer from './sharedComponents/footer';
 import Header from './sharedComponents/header';
 import ScrollUp from './sharedComponents/scrollUp';
 import AppLoader from './sharedComponents/hoc/appLoader';
+import ScrollToTop from './sharedComponents/scrollToTop';
 
 const App = () => {
   return (
     <>
       <AppLoader>
+        <ScrollToTop />
         <Header />
+
         <Switch>
-          <Route path="/" exact component={Main} />
-          <Route path="/products/:productId?" exact component={ProductsLayout} />
-          <Route path="/login/:type?" exact component={LogIn} />
+          <Route exact path="/" component={Main} />
+          <Route exact path="/products/:productId?" component={ProductsLayout} />
+
+          <Route exact path="/login/:type?" component={LogIn} />
         </Switch>
+
         <Footer />
       </AppLoader>
       <ScrollUp />
