@@ -31,7 +31,9 @@ router.post("/signUp", [
       const tokens = tokenService.generate({ _id: newUser._id });
       await tokenService.save(newUser._id, tokens.refreshToken);
 
-      res.status(201).send({ ...tokens, userId: newUser._id });
+      res
+        .status(201)
+        .send({ ...tokens, userId: newUser._id, role: newUser.role });
     } catch (error) {
       res
         .status(500)
@@ -67,7 +69,9 @@ router.post("/signInWithPassword", [
       const tokens = tokenService.generate({ _id: existingUser._id });
       await tokenService.save(existingUser._id, tokens.refreshToken);
 
-      res.status(200).send({ ...tokens, userId: existingUser._id });
+      res
+        .status(200)
+        .send({ ...tokens, userId: existingUser._id, role: existingUser.role });
     } catch (error) {
       res
         .status(500)
@@ -83,13 +87,15 @@ router.post("/token", async (req, res) => {
     const dbToken = await tokenService.findToken(refreshToken);
 
     if (isTokenInvalid(data, dbToken)) {
-      return res.status(400).json({ message: "Unauthorized" });
+      return res.status(401).json({ message: "Unauthorized" });
     }
 
     const tokens = tokenService.generate({ _id: data._id });
     await tokenService.save(data._id, tokens.refreshToken);
 
-    res.status(200).send({ ...tokens, userId: data._id });
+    const user = await User.findById(data._id);
+
+    res.status(200).send({ ...tokens, userId: data._id, role: user.role });
   } catch (error) {
     res
       .status(500)
