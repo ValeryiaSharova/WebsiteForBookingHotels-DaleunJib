@@ -3,6 +3,7 @@ const { check, validationResult } = require("express-validator");
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const tokenService = require("../services/token.service");
+const Cart = require("../models/Cart");
 const router = express.Router({ mergeParams: true });
 
 router.post("/signUp", [
@@ -28,6 +29,7 @@ router.post("/signUp", [
         ...req.body,
         password: hashedPassword,
       });
+      await Cart.create({ user: newUser._id, products: [] });
       const tokens = tokenService.generate({ _id: newUser._id });
       await tokenService.save(newUser._id, tokens.refreshToken);
 
