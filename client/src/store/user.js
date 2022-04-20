@@ -10,28 +10,20 @@ const initialState = localStorageService.getAccessToken()
   ? {
       auth: { userId: localStorageService.getUserId() },
       isLoggedIn: true,
-      /* entities: null,
-      isLoading: true,
       error: null,
-      
-      dataLoaded: false, */
     }
   : {
       auth: null,
       isLoggedIn: false,
-      /* entities: null,
-      isLoading: false,
       error: null,
-      
-      dataLoaded: false, */
     };
 
 const userSlice = createSlice({
-  name: 'users',
+  name: 'user',
   initialState,
   reducers: {
     authRequestSuccess: (state, action) => {
-      state.auth = action.payload;
+      state.auth = action.payload.userId;
       state.isLoggedIn = true;
     },
     authRequestFailed: (state, action) => {
@@ -44,7 +36,7 @@ const userSlice = createSlice({
   },
 });
 
-const { actions, reducer: usersReducer } = userSlice;
+const { actions, reducer: userReducer } = userSlice;
 const { authRequestSuccess, authRequestFailed, userLoggedOut } = actions;
 
 const authRequested = createAction('users/authRequested');
@@ -93,7 +85,7 @@ export const logOut = () => dispatch => {
   history.push('/');
 };
 
-export const getAuthError = () => state => state.users.error;
-export const getIsLoggedIn = () => state => state.users.isLoggedIn;
+export const getAuthError = () => state => state.user.error;
+export const getIsLoggedIn = () => state => state.user.isLoggedIn;
 
-export default usersReducer;
+export default userReducer;

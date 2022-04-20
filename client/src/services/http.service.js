@@ -40,7 +40,7 @@ http.interceptors.request.use(
       }
       const accessToken = localStorageService.getAccessToken();
       if (accessToken) {
-        config.header = { ...config.header, Authorization: `Bear ${accessToken}` };
+        config.headers = { ...config.headers, Authorization: `Bearer ${accessToken}` };
       }
     }
     return config;
@@ -67,7 +67,11 @@ http.interceptors.response.use(
     const expectedErrors =
       error.response && error.response.status >= 400 && error.response.status < 500;
     if (!expectedErrors) {
-      toast.error('Something was wrong, Try it later');
+      if (localStorage.getItem('selected-theme') === 'dark') {
+        toast.error('Something was wrong, Try it later', { theme: 'dark' });
+      } else {
+        toast.error('Something was wrong, Try it later');
+      }
     }
     return Promise.reject(error);
   }

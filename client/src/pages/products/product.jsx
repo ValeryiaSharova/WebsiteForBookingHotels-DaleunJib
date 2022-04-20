@@ -16,7 +16,7 @@ const Product = ({ productId }) => {
           <img src={product.image} alt={product.name} className="product-solo__img" />
 
           <div>
-            {product.category.map(p => (
+            {product.categories.map(p => (
               <span className="product__category" key={p}>
                 {categoryState.find(c => c._id === p).name}
               </span>

@@ -1,6 +1,8 @@
+/* eslint-disable import/no-named-as-default-member */
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
+import { getUserRole } from '../services/localStorage.service';
 import { getIsLoggedIn, logOut } from '../store/user';
 
 const Header = () => {
@@ -28,6 +30,7 @@ const Header = () => {
   };
 
   const isLoggedIn = useSelector(getIsLoggedIn());
+  const isAdmin = getUserRole();
 
   return (
     <header className="header scroll-header" id="header">
@@ -71,6 +74,19 @@ const Header = () => {
                     Cart
                   </NavLink>
                 </li>
+                {isAdmin === 'admin' ? (
+                  <li className="nav__item">
+                    <NavLink
+                      to="/admin"
+                      className="nav__link"
+                      activeClassName="active-link"
+                      onClick={clickToShowMenu}
+                    >
+                      Admin
+                    </NavLink>
+                  </li>
+                ) : null}
+
                 <li className="nav__item">
                   <span className="nav__link" onClick={() => dispatch(logOut())}>
                     Logout

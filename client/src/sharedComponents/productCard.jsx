@@ -2,8 +2,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { getUserCart, updateCart } from '../store/cart';
+import { getIsLoggedIn } from '../store/user';
 
 const ProductCard = ({ product, categoryState }) => {
+  const userId = useSelector(getIsLoggedIn());
+  const dispatch = useDispatch();
+  const cart = useSelector(getUserCart());
+  const handleAdd = id => {
+    if (userId) {
+      const newCart = { ...cart };
+      if (newCart?.products) {
+        const isExists = newCart.products.findIndex(p => p.product === id);
+        if (isExists !== -1) {
+          const updateProduct = { product: id, amount: newCart.products[isExists].amount + 1 };
+          newCart.products = [...newCart.products.filter(p => p.product !== id), updateProduct];
+          dispatch(updateCart(newCart, 'add'));
+          return;
+        }
+      }
+      newCart.products = [...newCart.products, { product: id, amount: 1 }];
+      dispatch(updateCart(newCart, 'add'));
+    } else if (localStorage.getItem('selected-theme') === 'dark') {
+      toast.info('Sign in to add to cart!', { theme: 'dark' });
+    } else {
+      toast.info('Sign in to add to cart!');
+    }
+  };
   return (
     <article className="product__card" key={product._id}>
       <div className="product__circle" />
@@ -17,7 +44,7 @@ const ProductCard = ({ product, categoryState }) => {
             <h3 className="product__title">{product.name}</h3>
           </Link>
           <div className="container-center">
-            {product.category.map(p => (
+            {product.categories.map(p => (
               <span className="product__category" key={p}>
                 {categoryState.find(c => c._id === p).name}
               </span>
@@ -25,7 +52,11 @@ const ProductCard = ({ product, categoryState }) => {
           </div>
           <span className="product__price">${product.price}</span>
 
-          <button className="button--flex product__button" type="button">
+          <button
+            className="button--flex product__button"
+            type="button"
+            onClick={() => handleAdd(product._id)}
+          >
             <i className="ri-shopping-bag-line" />
           </button>
         </>

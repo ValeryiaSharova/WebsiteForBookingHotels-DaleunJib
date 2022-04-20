@@ -29,9 +29,9 @@ class TokenService {
     }
   }
 
-  validateAccess(accessSecret) {
+  validateAccess(accessToken) {
     try {
-      return jwt.verify(accessSecret, config.get("accessSecret"));
+      return jwt.verify(accessToken, config.get("accessSecret"));
     } catch (error) {
       return null;
     }
