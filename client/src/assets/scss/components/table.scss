@@ -1,0 +1,11 @@
+.table {
+  margin: auto;
+
+  &__info {
+    padding: 0px 10px;
+
+    &-category {
+      text-align: center;
+    }
+  }
+}
