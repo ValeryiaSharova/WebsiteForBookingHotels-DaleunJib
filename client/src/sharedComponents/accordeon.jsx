@@ -17,7 +17,8 @@ const Accordeon = ({ title, content, categoryProduct, onCategorySelected }) => {
 
   const handleClick = categoryId => {
     if (id === categoryId) {
-      onCategorySelected(undefined);
+      setId();
+      onCategorySelected();
     } else {
       setId(categoryId);
       onCategorySelected(categoryId);
@@ -32,12 +33,13 @@ const Accordeon = ({ title, content, categoryProduct, onCategorySelected }) => {
       </header>
 
       <div className="questions__content" ref={divRef}>
-        <p className="questions__description">{content}</p>
+        {content ? <p className="questions__description">{content}</p> : null}
+
         <div className="container-center">
           {categoryProduct &&
             categoryProduct.map(p => (
               <button
-                className="product__find-category"
+                className={`product__find-category ${p._id === id ? 'product__active' : ''}`}
                 key={p._id}
                 type="button"
                 onClick={() => handleClick(p._id)}
@@ -53,12 +55,13 @@ const Accordeon = ({ title, content, categoryProduct, onCategorySelected }) => {
 
 Accordeon.propTypes = {
   title: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
+  content: PropTypes.string,
   categoryProduct: PropTypes.arrayOf(PropTypes.object),
   onCategorySelected: PropTypes.func,
 };
 
 Accordeon.defaultProps = {
+  content: null,
   categoryProduct: null,
   onCategorySelected: null,
 };
