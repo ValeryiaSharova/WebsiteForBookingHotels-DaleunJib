@@ -45,6 +45,10 @@
     margin: 5px;
     font-size: 12px;
   }
+  &__active {
+    background-color: var(--first-color-lighten);
+    color: black;
+  }
   &__find-category:hover {
     background-color: var(--first-color);
     color: #fff;

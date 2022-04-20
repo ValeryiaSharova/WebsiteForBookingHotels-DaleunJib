@@ -47,10 +47,6 @@
       column-gap: 5rem;
     }
   }
-
-  .footer__subscribe {
-    width: 400px;
-  }
 }
 
 @media screen and (min-width: 767px) {
@@ -105,9 +101,6 @@
   .footer {
     &__container {
       column-gap: 3rem;
-    }
-    &__subscribe {
-      width: initial;
     }
   }
 }
@@ -191,7 +184,7 @@
       padding: 1rem;
     }
     &__description {
-      padding: 0 3.5rem 2.25rem 2.75rem;
+      padding: 0px 15px;
     }
   }
 
