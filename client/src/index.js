@@ -6,6 +6,7 @@ import App from './App';
 import './assets/scss/styles.scss';
 import createStore from './store/store';
 import history from './utilits/history';
+import 'react-toastify/dist/ReactToastify.css';
 
 const store = createStore();
 

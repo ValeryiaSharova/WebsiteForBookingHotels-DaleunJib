@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import Main from './pages/main/main';
 import ProductsLayout from './pages/products/productsLayout';
 import LogIn from './pages/logIn/login';
