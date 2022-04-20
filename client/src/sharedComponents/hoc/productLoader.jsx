@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getDataStatus, loadProducts } from '../../store/products';
+import Loader from '../loader';
 
 const ProductLoader = ({ children }) => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const ProductLoader = ({ children }) => {
   }, []);
 
   if (!dataStatus) {
-    return <h1>Loading...</h1>;
+    return <Loader />;
   }
   return children;
 };

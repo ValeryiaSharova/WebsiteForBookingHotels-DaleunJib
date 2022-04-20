@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import _ from 'lodash';
 import Accordeon from '../../sharedComponents/accordeon';
+import Loader from '../../sharedComponents/loader';
 import ProductCard from '../../sharedComponents/productCard';
 import { getCategory, getCategoryError, getCategoryLoadingStatus } from '../../store/category';
 import { getProducts, getProductsError, getProductsLoadingStatus } from '../../store/products';
@@ -71,7 +72,7 @@ const ProductsList = () => {
   if (productsLoading || categoryLoading) {
     return (
       <section className="product section container" id="products">
-        <h1>Loading...</h1>
+        <Loader />
       </section>
     );
   }

@@ -7,6 +7,7 @@ import {
   getQuestionsLoadingStatus,
 } from '../../../store/questions';
 import Accordeon from '../../../sharedComponents/accordeon';
+import Loader from '../../../sharedComponents/loader';
 
 const Questions = () => {
   const faq = useSelector(getQuestions());
@@ -16,7 +17,7 @@ const Questions = () => {
   if (isLoading) {
     return (
       <section className="questions section">
-        <h2>Loading...</h2>
+        <Loader />
       </section>
     );
   }

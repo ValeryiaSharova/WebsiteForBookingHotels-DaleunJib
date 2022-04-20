@@ -2,6 +2,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Loader from '../../../sharedComponents/loader';
 import ProductCard from '../../../sharedComponents/productCard';
 import {
   getFirstProducts,
@@ -15,7 +16,7 @@ const Products = () => {
   const error = useSelector(getProductsError());
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <Loader />;
   }
 
   if (error) {

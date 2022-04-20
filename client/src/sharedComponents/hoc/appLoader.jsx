@@ -8,6 +8,7 @@ import { getQuestionsLoadingStatus, loadQuestions } from '../../store/questions'
 import { getIsLoggedIn } from '../../store/user';
 import localStorageService from '../../services/localStorage.service';
 import { loadUserCart } from '../../store/cart';
+import Loader from '../loader';
 
 const AppLoader = ({ children }) => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const AppLoader = ({ children }) => {
   }, [isLoggedIn]);
 
   if (productsLoadingStatus || questionsLoadingStatus) {
-    return <h1>Loading...</h1>;
+    return <Loader />;
   }
   return children;
 };
