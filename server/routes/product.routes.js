@@ -26,16 +26,32 @@ router
     }
   });
 
-router.delete("/:id", auth, async (req, res) => {
-  try {
-    const { id } = req.params;
-    const removedProduct = await Product.findById(id);
-    res.status(200).send(null);
-  } catch (error) {
-    res
-      .status(500)
-      .json({ message: "An error has occurred on the server. Try later" });
-  }
-});
+router
+  .route("/:id")
+  .delete(auth, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const removedProduct = await Product.findById(id);
+      await removedProduct.remove();
+      res.status(200).send(null);
+    } catch (error) {
+      res
+        .status(500)
+        .json({ message: "An error has occurred on the server. Try later" });
+    }
+  })
+  .patch(auth, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const updatedProduct = await Product.findByIdAndUpdate(id, req.body, {
+        new: true,
+      });
+      res.status(200).send(updatedProduct);
+    } catch (error) {
+      res
+        .status(500)
+        .json({ message: "An error has occurred on the server. Try later" });
+    }
+  });
 
 module.exports = router;
