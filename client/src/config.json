@@ -1,4 +1,4 @@
 {
-  "apiEndPoint": "http://localhost:8080/api",
+  "apiEndPoint": "https://plantex-ruby.vercel.app/",
   "isFireBase": false
 }
