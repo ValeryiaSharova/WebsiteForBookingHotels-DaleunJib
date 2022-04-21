@@ -3,11 +3,11 @@
   "env": {},
   "builds": [
     {
-      "src": "server/app.js",
+      "src": "./server/app.js",
       "use": "@vercel/node"
     },
     {
-      "src": "client/build/**",
+      "src": "./client/build/**",
       "use": "@vercel/static",
       "config": { "includeFiles": ["client/build/**"] }
     }
@@ -15,7 +15,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "server/app.js"
+      "dest": "./server/app.js"
     },
     {
       "src": "/",
