@@ -5,15 +5,14 @@ const config = require("config");
 const cors = require("cors");
 const path = require("path");
 const initDatabase = require("./startUp/initDatabase");
-//const routes = require("./routes");
+const routes = require("./routes");
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
-//app.use("/api", routes);
-app.use("/api", require(path.join(__dirname, "routes", "index.js")));
+app.use("/api", routes);
 
 const PORT = config.get("port") ?? 8080;
 
