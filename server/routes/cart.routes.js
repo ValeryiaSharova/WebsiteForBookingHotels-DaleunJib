@@ -19,7 +19,6 @@ router
   .patch(auth, async (req, res) => {
     try {
       const { id } = req.params;
-      console.log(req.body);
       const updatedCart = await Cart.findByIdAndUpdate(id, req.body, {
         new: true,
       });
