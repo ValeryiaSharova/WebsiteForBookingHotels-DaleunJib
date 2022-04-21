@@ -33,8 +33,6 @@ async function start() {
     await mongoose.connect(process.env.MONGOURI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
     });
     app.listen(PORT, () =>
       console.log(chalk.greenBright(`Server has been started on port ${PORT}`))
