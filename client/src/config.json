@@ -1,4 +1,4 @@
 {
-  "apiEndPoint": "https://plantex-ruby.vercel.app/",
+  "apiEndPoint": "https://plantex-ruby.vercel.app/api",
   "isFireBase": false
 }
