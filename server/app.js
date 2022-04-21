@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 const chalk = require("chalk");
 const cors = require("cors");
 const path = require("path");
@@ -12,6 +13,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use("/api", routes);
+
+dotenv.config();
 
 const PORT = process.env.PORT ?? 8080;
 
@@ -27,7 +30,7 @@ async function start() {
     mongoose.connection.once("open", () => {
       initDatabase();
     });
-    await mongoose.connect(process.env.mongoUri);
+    await mongoose.connect(process.env.MONGOURI);
     app.listen(PORT, () =>
       console.log(chalk.greenBright(`Server has been started on port ${PORT}`))
     );
