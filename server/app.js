@@ -1,6 +1,9 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config({ path: __dirname + "/.env" });
+}
+
 const express = require("express");
 const mongoose = require("mongoose");
-const dotenv = require("dotenv");
 const chalk = require("chalk");
 const cors = require("cors");
 const path = require("path");
