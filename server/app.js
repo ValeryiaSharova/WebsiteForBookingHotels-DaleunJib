@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const chalk = require("chalk");
-const config = require("config");
 const cors = require("cors");
 const path = require("path");
 const initDatabase = require("./startUp/initDatabase");
@@ -28,7 +27,7 @@ async function start() {
     mongoose.connection.once("open", () => {
       initDatabase();
     });
-    await mongoose.connect(config.get("mongoUri"));
+    await mongoose.connect(process.env.mongoUri);
     app.listen(PORT, () =>
       console.log(chalk.greenBright(`Server has been started on port ${PORT}`))
     );
